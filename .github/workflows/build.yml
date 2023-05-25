@@ -2,7 +2,7 @@ name: build
 on: [push, pull_request]
 
 jobs:
-  build:
+  build-linux:
     runs-on: ubuntu-latest
     steps:
     - name: Setup Java 17
@@ -17,5 +17,23 @@ jobs:
     - name: Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: distribution
-        path: app/build/distributions/*
+        name: distribution-linux
+        path: app/build/distributions/*.tar
+  build-windows:
+      runs-on: windows-latest
+      steps:
+      - name: Setup Java 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: microsoft
+          java-version: 17
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build
+        shell: cmd
+        run: gradlew.bat assembleDist
+      - name: Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: distribution-windows
+          path: app/build/distributions/*.zip
