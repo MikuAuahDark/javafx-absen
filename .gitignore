@@ -1,0 +1,12 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+app/bin
+build
+.vscode
+
+# Custom
+**/absen.sqlite3
+*.csv
+make_insert.py
