@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -171,7 +172,12 @@ public class SceneCollection {
         tableColumn5.setEditable(true);
 
         // Masukkan kolom
-        tableView.getColumns().addAll(tableColumn1, tableColumn2, tableColumn3, tableColumn4, tableColumn5);
+        ObservableList<TableColumn<Absence, ?>> columns = tableView.getColumns();
+        columns.add(tableColumn1);
+        columns.add(tableColumn2);
+        columns.add(tableColumn3);
+        columns.add(tableColumn4);
+        columns.add(tableColumn5);
         // Masukkan data
         tableView.setItems(db.get());
         // Biarkan tabel dapat diubah
